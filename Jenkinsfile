@@ -157,25 +157,6 @@ node {
             }
         }
         
-        try {
-            stage('Regression tests') {
-                dir('regress') {
-                    nicelog {
-                        sh """
-                            export DISPLAY=:0
-                            python3 ../inviwo/tools/regression.py \
-                                    --inviwo ../build/bin/inviwo \
-                                    --header ${env.JENKINS_HOME}/inviwo-config/header.html \
-                                    --output . \
-                                    --repos ../inviwo
-                        """
-                    }
-                }
-            }
-        } catch (e) {
-            // Mark as unstable, if we mark as failed, the report will not be published.
-            currentBuild.result = 'UNSTABLE'
-        }
         stage('Publish') {
             publishHTML([
                 allowMissing: true,
