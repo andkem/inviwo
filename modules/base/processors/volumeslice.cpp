@@ -168,19 +168,24 @@ void VolumeSlice::process() {
                 auto layerdata = layerrep->getDataTyped();
 
                 switch (util::extent<T, 0>::value) {
+                    case 0: // extent::value returns 0 for non-glm types
                     case 1:
-                        layerrep->setSwizzleMask({{ImageChannel::Red, ImageChannel::Zero,
-                                                   ImageChannel::Zero, ImageChannel::One}});
+                        layerrep->setSwizzleMask({{ImageChannel::Red, ImageChannel::Red,
+                                                   ImageChannel::Red, ImageChannel::One}});
+                        break;
                     case 2:
                         layerrep->setSwizzleMask({{ImageChannel::Red, ImageChannel::Green,
                                                    ImageChannel::Zero, ImageChannel::One}});
+                        break;
                     case 3:
                         layerrep->setSwizzleMask({{ImageChannel::Red, ImageChannel::Green,
                                                    ImageChannel::Blue, ImageChannel::One}});
+                        break;
                     default:
                     case 4:
                         layerrep->setSwizzleMask({{ImageChannel::Red, ImageChannel::Green,
                                                    ImageChannel::Blue, ImageChannel::Alpha}});
+                        break;
                 }
 
                 size_t offsetVolume;
