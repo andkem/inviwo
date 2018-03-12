@@ -110,7 +110,7 @@ node {
             dir('build/bin') {
                 nicelog {
                     sh '''
-                        export DISPLAY=:0
+                        export DISPLAY=:1
                         rc=0
                         for unittest in inviwo-unittests-*
                             do echo ==================================
@@ -127,7 +127,7 @@ node {
             dir('build/bin') {
                 nicelog {
                     sh '''
-                        export DISPLAY=:0
+                        export DISPLAY=:1
                         ./inviwo-integrationtests
                     '''
                 }
@@ -150,7 +150,7 @@ node {
             dir('build') {
                 nicelog {
                     sh '''
-                        export DISPLAY=:0
+                        export DISPLAY=:1
                         ninja DOXY-ALL
                     '''
                 }
@@ -162,7 +162,7 @@ node {
                 dir('regress') {
                     nicelog {
                         sh """
-                            export DISPLAY=:0
+                            export DISPLAY=:1
                             python3 ../inviwo/tools/regression.py \
                                     --inviwo ../build/bin/inviwo \
                                     --header ${env.JENKINS_HOME}/inviwo-config/header.html \
