@@ -69,7 +69,13 @@ inline bool operator>=(const Tag& lhs, const Tag& rhs) { return !operator< (lhs,
 class IVW_CORE_API Tags { 
 public:
     Tags();
+	/*
+	* Creates tags from a string. Multiple tags are delimited by ','.
+	*/
     Tags(const std::string tags);
+	/*
+	* Creates tags from a char*. Multiple tags are delimited by ','.
+	*/
     Tags(const char* tags);
     Tags(const Tags& rhs);
     Tags& operator=(const Tags& that);
