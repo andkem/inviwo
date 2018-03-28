@@ -59,6 +59,20 @@ public:
     virtual VolumeIndicatorProperty* clone() const override;
     virtual ~VolumeIndicatorProperty();
 
+    void setPlane1(PlaneProperty plane);
+    void setPlane2(PlaneProperty plane);
+    void setPlane3(PlaneProperty plane);
+
+    const PlaneProperty& getPlane1() const;
+    const PlaneProperty& getPlane2() const;
+    const PlaneProperty& getPlane3() const;
+
+    void setEnable(bool enable);
+    bool getEnable() const;
+
+    void setMode(OptionPropertyInt mode);
+    const OptionPropertyInt& getMode() const;
+
     BoolProperty enable_;
 
     OptionPropertyInt mode_;
@@ -66,6 +80,7 @@ public:
     PlaneProperty plane1_;
     PlaneProperty plane2_;
     PlaneProperty plane3_;
+
 
 private:
     void onModeChange();

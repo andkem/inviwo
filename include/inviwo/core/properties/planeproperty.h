@@ -62,6 +62,21 @@ public:
     virtual PlaneProperty* clone() const override;
     virtual ~PlaneProperty();
 
+    void setEnable(bool enable);
+    bool getEnable() const;
+
+    void setMode(OptionPropertyInt mode);
+    const OptionPropertyInt& getMode() const;
+
+    void setPosition(FloatVec3Property position);
+    const FloatVec3Property& getPosition() const;
+
+    void setNormal(FloatVec3Property normal);
+    const FloatVec3Property& getNormal() const;
+
+    void setColor(FloatVec4Property color);
+    const FloatVec4Property& getColor() const;
+
     BoolProperty enable_;
     OptionPropertyInt mode_;
     FloatVec3Property position_;

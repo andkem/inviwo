@@ -87,6 +87,47 @@ PlaneProperty* PlaneProperty::clone() const { return new PlaneProperty(*this); }
 
 PlaneProperty::~PlaneProperty() {}
 
+void  PlaneProperty::setEnable(bool enable) {
+    enable_ = enable;
+}
+
+bool PlaneProperty::getEnable() const {
+    return enable_;
+}
+
+void PlaneProperty::setMode(OptionPropertyInt mode) {
+    mode_ = mode;
+}
+
+const OptionPropertyInt& PlaneProperty::getMode() const {
+    return mode_;
+}
+
+
+void PlaneProperty::setPosition(FloatVec3Property position) {
+    position_ = position;
+}
+
+const FloatVec3Property& PlaneProperty::getPosition() const {
+    return position_;
+}
+
+void PlaneProperty::setNormal(FloatVec3Property normal) {
+    normal_ = normal;
+}
+
+const FloatVec3Property& PlaneProperty::getNormal() const {
+    return normal_;
+}
+
+void PlaneProperty::setColor(FloatVec4Property color) {
+    color_ = color;
+}
+
+const FloatVec4Property& PlaneProperty::getColor() const {
+    return color_;
+}
+
 void PlaneProperty::onModeChange() {}
 
 }  // namespace

@@ -39,6 +39,8 @@
 #include <inviwo/core/properties/fileproperty.h>
 #include <inviwo/core/properties/directoryproperty.h>
 #include <inviwo/core/properties/boolproperty.h>
+#include <inviwo/core/properties/volumeindicatorproperty.h>
+#include <inviwo/core/properties/planeproperty.h>
 
 #include <inviwo/core/util/stdextensions.h>
 
@@ -189,5 +191,31 @@ void exposeProperties(py::module &m) {
 
     py::class_<BoolProperty, Property, PropertyPtr<BoolProperty>> boolProperty(m, "BoolProperty");
     pyTemplateProperty<bool, BoolProperty>(boolProperty);
+
+    py::class_<PlaneProperty, Property, PropertyPtr<PlaneProperty>>(
+        m, "PlaneProperty")
+        .def_property("enable", &PlaneProperty::getEnable,
+                      &PlaneProperty::setEnable)
+        .def_property("mode", &PlaneProperty::getMode,
+                      &PlaneProperty::setMode)
+        .def_property("position", &PlaneProperty::getPosition,
+                      &PlaneProperty::setPosition)
+        .def_property("normal", &PlaneProperty::getNormal,
+                      &PlaneProperty::setNormal)
+        .def_property("color", &PlaneProperty::getColor,
+                      &PlaneProperty::setColor);
+
+    py::class_<VolumeIndicatorProperty, Property, PropertyPtr<VolumeIndicatorProperty>>(
+        m, "VolumeIndicatorProperty")
+        .def_property("enable", &VolumeIndicatorProperty::getEnable,
+                      &VolumeIndicatorProperty::setEnable)
+        .def_property("mode", &VolumeIndicatorProperty::getMode,
+                      &VolumeIndicatorProperty::setMode)
+        .def_property("plane1", &VolumeIndicatorProperty::getPlane1,
+                      &VolumeIndicatorProperty::setPlane1)
+        .def_property("plane2", &VolumeIndicatorProperty::getPlane2,
+                      &VolumeIndicatorProperty::setPlane2)
+        .def_property("plane3", &VolumeIndicatorProperty::getPlane3,
+                      &VolumeIndicatorProperty::setPlane3);
 }
 }  // namespace

@@ -87,4 +87,44 @@ VolumeIndicatorProperty::~VolumeIndicatorProperty() {}
 
 void VolumeIndicatorProperty::onModeChange() {}
 
+void VolumeIndicatorProperty::setPlane1(PlaneProperty plane) {
+    plane1_ = plane;
+}
+
+void VolumeIndicatorProperty::setPlane2(PlaneProperty plane) {
+    plane2_ = plane;
+}
+
+void VolumeIndicatorProperty::setPlane3(PlaneProperty plane) {
+    plane3_ = plane;
+}
+
+const PlaneProperty& VolumeIndicatorProperty::getPlane1() const {
+    return plane1_;
+}
+
+const PlaneProperty& VolumeIndicatorProperty::getPlane2() const {
+    return plane2_;
+}
+
+const PlaneProperty& VolumeIndicatorProperty::getPlane3() const {
+    return plane3_;
+}
+
+void VolumeIndicatorProperty::setEnable(bool enable) {
+    enable_ = enable;
+}
+
+bool VolumeIndicatorProperty::getEnable() const {
+    return enable_;
+}
+
+void VolumeIndicatorProperty::setMode(OptionPropertyInt mode) {
+    mode_ = mode;
+}
+
+const OptionPropertyInt& VolumeIndicatorProperty::getMode() const {
+    return mode_;
+}
+
 }  // namespace
