@@ -320,7 +320,7 @@ void HDF5ToVolume::onSelectionChange() {
 }
 
 void HDF5ToVolume::makeVolume() {
-    if (inport_.hasData()) {
+    if (inport_.hasData() && !volumeMatches_.empty()) {
         const auto data = inport_.getData();
         MetaData volumeMeta = volumeMatches_[volumeSelection_.getSelectedIndex()];
 
