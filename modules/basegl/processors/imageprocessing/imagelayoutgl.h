@@ -81,7 +81,9 @@ namespace inviwo {
         virtual const ProcessorInfo getProcessorInfo() const override;
         static const ProcessorInfo processorInfo_;
 
-        enum class Layout {
+        // Explicitly set a reasonable underlying type to clarify
+        // what one can expect from the Python export.
+        enum class Layout : unsigned int {
             Single,
             HorizontalSplit,
             VerticalSplit,

@@ -41,12 +41,18 @@
 #include <inviwo/core/properties/boolproperty.h>
 #include <inviwo/core/properties/volumeindicatorproperty.h>
 #include <inviwo/core/properties/planeproperty.h>
+#include <inviwo/core/properties/optionproperty.h>
+#include <modules/basegl/processors/imageprocessing/imagelayoutgl.h>
 
 #include <inviwo/core/util/stdextensions.h>
+
 
 namespace py = pybind11;
 
 namespace inviwo {
+
+using LayoutProperty = TemplateOptionProperty<ImageLayoutGL::Layout>;
+typedef std::underlying_type<ImageLayoutGL::Layout>::type LayoutPropertyType ;
 
 struct propertyDelete {
     void operator()(Property *p) {
@@ -217,5 +223,21 @@ void exposeProperties(py::module &m) {
                       &VolumeIndicatorProperty::setPlane2)
         .def_property("plane3", &VolumeIndicatorProperty::getPlane3,
                       &VolumeIndicatorProperty::setPlane3);
+
+    /* The casting hell below is to convert the enum class type Layout
+     * into its underlying type. The setter and getter are cast to a
+     * function taking and returning the underlying type, instead of
+     * the enum class.
+     *
+     * The static cast is done to help the compiler deduce which
+     * getter function to use, as there are two of them.
+     */
+    py::class_<LayoutProperty, Property,
+               PropertyPtr<LayoutProperty>>(m, "LayoutProperty")
+       .def_property("value",
+                     reinterpret_cast<LayoutPropertyType (LayoutProperty::*)(void)>(&LayoutProperty::get),
+                     reinterpret_cast<void (LayoutProperty::*)(
+                         LayoutPropertyType&)>(static_cast<void (LayoutProperty::*)(
+                             const ImageLayoutGL::Layout&)>(&LayoutProperty::set)));
 }
 }  // namespace
