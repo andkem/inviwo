@@ -66,10 +66,6 @@ public:
     void setTitle(const std::string& title) {
         caption_.title_.set(title);
     }
-    const std::string& getTitle() const {
-        return caption_.title_.get();
-    }
-
     void setLabelFormat(const std::string& formatStr) {
         labels_.title_.set(formatStr);
     }

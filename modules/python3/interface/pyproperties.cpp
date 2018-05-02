@@ -30,8 +30,6 @@
 #include <modules/python3/interface/pyproperties.h>
 #include <inviwo/core/properties/propertyfactory.h>
 
-#include <modules/plotting/properties/axisproperty.h>
-#include <modules/plottinggl/plotters/scatterplotgl.h>
 #include <modules/python3/interface/inviwopy.h>
 
 #include <inviwo/core/properties/boolproperty.h>
@@ -49,8 +47,6 @@
 
 #include <inviwo/core/util/stdextensions.h>
 
-using inviwo::plot::AxisProperty;
-using inviwo::plot::ScatterPlotGL;
 
 namespace py = pybind11;
 
@@ -250,11 +246,5 @@ void exposeProperties(py::module &m) {
         .def_property("isoValue", [](SimpleRaycastingProperty* p) { return p->isoValue_.get(); },
                       [](SimpleRaycastingProperty* p, float v) { p->isoValue_.set(v); });
 
-    py::class_<ScatterPlotGL::Properties, CompositeProperty, PropertyPtr<ScatterPlotGL::Properties>>(
-            m, "ScatterPlotGLProperties");
-
-    py::class_<AxisProperty, CompositeProperty, PropertyPtr<AxisProperty>>(
-            m, "AxisProperty")
-        .def_property("title", &AxisProperty::setTitle, &AxisProperty::getTitle);
 }
 }  // namespace
