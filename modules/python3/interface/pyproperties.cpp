@@ -32,16 +32,17 @@
 
 #include <modules/python3/interface/inviwopy.h>
 
-#include <inviwo/core/properties/cameraproperty.h>
-#include <inviwo/core/properties/buttonproperty.h>
-#include <inviwo/core/properties/transferfunctionproperty.h>
-#include <inviwo/core/properties/stringproperty.h>
-#include <inviwo/core/properties/fileproperty.h>
-#include <inviwo/core/properties/directoryproperty.h>
 #include <inviwo/core/properties/boolproperty.h>
-#include <inviwo/core/properties/volumeindicatorproperty.h>
-#include <inviwo/core/properties/planeproperty.h>
+#include <inviwo/core/properties/buttonproperty.h>
+#include <inviwo/core/properties/cameraproperty.h>
+#include <inviwo/core/properties/directoryproperty.h>
+#include <inviwo/core/properties/fileproperty.h>
 #include <inviwo/core/properties/optionproperty.h>
+#include <inviwo/core/properties/planeproperty.h>
+#include <inviwo/core/properties/simpleraycastingproperty.h>
+#include <inviwo/core/properties/stringproperty.h>
+#include <inviwo/core/properties/transferfunctionproperty.h>
+#include <inviwo/core/properties/volumeindicatorproperty.h>
 #include <modules/basegl/processors/imageprocessing/imagelayoutgl.h>
 
 #include <inviwo/core/util/stdextensions.h>
@@ -239,5 +240,10 @@ void exposeProperties(py::module &m) {
                      reinterpret_cast<void (LayoutProperty::*)(
                          LayoutPropertyType&)>(static_cast<void (LayoutProperty::*)(
                              const ImageLayoutGL::Layout&)>(&LayoutProperty::set)));
+
+    py::class_<SimpleRaycastingProperty, PropertyOwner, PropertyPtr<SimpleRaycastingProperty>>(
+            m, "SimpleRaycastingProperty")
+        .def_property("isoValue", [](SimpleRaycastingProperty* p) { return p->isoValue_.get(); },
+                      [](SimpleRaycastingProperty* p, float v) { p->isoValue_.set(v); });
 }
 }  // namespace
