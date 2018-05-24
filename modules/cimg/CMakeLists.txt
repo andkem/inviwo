@@ -2,6 +2,8 @@
 # CImg Module
 ivw_module(CImg)
 
+find_package(PNG)
+
 #--------------------------------------------------------------------
 # Add header files
 set(HEADER_FILES
@@ -38,6 +40,8 @@ set(TEST_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/savetobuffer-test.cpp
 )
 ivw_add_unittest(${TEST_FILES})
+
+include_directories(${PNG_INCLUDE_DIRS})
 
 add_dependency_libs_to_module("png")
 

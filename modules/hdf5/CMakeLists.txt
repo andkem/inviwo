@@ -40,6 +40,7 @@ ivw_group("Source Files" ${SOURCE_FILES})
 # Create module
 ivw_create_module(${SOURCE_FILES} ${HEADER_FILES})
 
+include_directories(${HDF5_INCLUDE_DIRS})
 target_link_libraries(inviwo-module-hdf5 PUBLIC ${HDF5_LIBRARIES}
                                                 ${HDF5_HL_LIBRARIES}
                                                 ${HDF5_CXX_LIBRARIES}
