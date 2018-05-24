@@ -128,7 +128,6 @@ endif()
 # 
 # Dependencies between libraries are solved using the given order
 add_subdirectory(ext/zlib-1.2.11)
-add_subdirectory(ext/libpng)
 add_subdirectory(ext/libjpeg)
 add_subdirectory(ext/openexr)
 add_subdirectory(ext/flags)

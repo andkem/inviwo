@@ -3,7 +3,6 @@
 set(dependencies
     ZLIB
     JPEG
-    PNG
     ## OpenEXR dependencies
     openexr-half
     openexr-iex
