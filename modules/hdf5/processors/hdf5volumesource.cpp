@@ -179,8 +179,7 @@ void HDF5ToVolume::process() {
             ++j;
         }
 
-        vec3 offset = -0.5f * vec3(basis[0] + basis[1] + basis[2]);
-        basis[3] = vec4(offset, 1.0f);
+        basis[3] = vec4(vec3(0), 1);
         volume_->setModelMatrix(basis);
     } else {
         volume_->setModelMatrix(basis_);
